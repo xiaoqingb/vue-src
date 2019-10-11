@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./lib/vue-2.4.0.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 只有在 keyCode 是 13 时调用 vm.show() -->
+    <!-- <input v-on:keyup.enter="show" v-model="val"> -->
+    <!-- 同上 -->
+    <!-- <input @keyup.enter="show"> -->
+
+    <input v-on:keyup.f22="show" v-model="val">
+
+    <!-- .enter
+    .tab
+    .delete (捕获“删除”和“退格”键)
+    .esc
+    .space
+    .up
+    .down
+    .left
+    .right -->
+
+  </div>
+<script>
+  // 自定义全局按键修饰符
+  Vue.config.keyCodes.f22 = 113
+
+  var vm = new Vue({
+    el : "#app",
+    data:{
+      val:''
+    },
+    methods: {
+      show(){
+        alert(this.val)
+      }
+    },
+  })
+</script>
+  
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./lib/vue-2.4.0.js"></script>
+  <style>
+    /* v-enter 【这是一个时间点】 是进入之前，元素的起始状态，此时还没有开始进入 */
+    /* v-leave-to 【这是一个时间点】 是动画离开之后，离开的终止状态，此时，元素 动画已经结束了 */
+    .v-enter,
+    .v-leave-to {
+      opacity: 0;
+      transform: translateX(150px);
+    }
+    /* v-enter-active 【入场动画的动作】 */
+    /* v-leave-active 【离场动画的动作】 */
+    .v-enter-active,
+    .v-leave-active{
+      transition: all 0.8s ease;
+    }
+
+    /* 使用自定义的前缀my-设置h6的动画 */
+    .my-enter,
+    .my-leave-to {
+      opacity: 0;
+      transform: translateY(70px);
+    }
+    .my-enter-active,
+    .my-leave-active{
+      transition: all 0.8s ease;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <input type="button" value="toggle" @click="flag=!flag">
+    <transition>
+      <h3 v-if="flag">这是一个H3</h3>
+    </transition>
+
+    <hr>
+
+    <input type="button" value="toggle2" @click="flag2=!flag2">
+    <!-- 当transition没有设置name属性的时候，默认是以v-作为前缀的 -->
+    <!-- 我们可以给 transition 设置name属性来自定义过渡类名前缀 -->
+    <transition name="my">
+      <h6 v-if="flag2">这是一个H6</h6>
+    </transition>
+  </div>
+
+  <script>
+    // 创建 Vue 实例，得到 ViewModel
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        flag: false,
+        flag2: false
+      }
+    });
+  </script>
+</body>
+
+</html>
